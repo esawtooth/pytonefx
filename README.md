@@ -2,10 +2,6 @@
 
 **Real‑time, schematic‑accurate guitar processing in pure Python**
 
-<p align="center">
-  <img src="docs/hero.png" width="600">
-</p>
-
 ## ✨ Features
 
 * **TorchFX DSP graph** – GPU‑accelerated FIR/IIR, delay lines, waveshapers.
