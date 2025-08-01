@@ -1,4 +1,14 @@
-# Technical Stack
+# Instructions for the Programming Agent
+
+This file provides guidelines for any automation or AI agent contributing to **PyTone FX**. Follow these steps to build and test the project.
+
+## Overview
+
+PyTone FX is a real-time guitar-processing engine written in Python. The project uses TorchFX for DSP graphs and pywdf for schematic-level components. Refer to `README.md` for a feature overview and directory layout.
+
+## Toolchain and Dependencies
+
+The preferred tool versions and rationale are captured below (mirroring `TECHSTACK.md`):
 
 | Layer                 | Choice                                               | Rationale                            | Explicitly **Not** Used             |
 | --------------------- | ---------------------------------------------------- | ------------------------------------ | ----------------------------------- |
@@ -19,6 +29,8 @@
 
 ## Development Environment
 
+Use the following commands to set up a Debian/Ubuntu environment:
+
 ```bash
 # Install core tool‑chain (Debian/Ubuntu)
 sudo apt-get update
@@ -37,7 +49,7 @@ pre-commit install
 
 Run `make latency` to execute automated latency/stability benchmarks on both CPU and GPU paths.
 
-## Coding Standards
+## Coding Standards
 
 * **black** (line length 88, stable) for formatting
 * **isort** (profile = black) for import order
@@ -49,6 +61,15 @@ All checks run in CI; failing any gate blocks the merge.
 
 ## Security & Compliance
 
-* All dependencies are scanned via GitHub Dependabot + `pip-audit`.
-* No proprietary IRs or ML weights kept in‑repo; fetched by hash on first run.
-* Tauri sandbox enforces `device.audio-input` only; no unrestricted FS access.
+* Dependencies are scanned via GitHub Dependabot and `pip-audit`.
+* No proprietary IRs or ML weights are stored in the repository; they are fetched by hash on first run.
+* The Tauri sandbox restricts access to `device.audio-input` only.
+
+## Build & Test Workflow
+
+1. Ensure the dependencies above are installed.
+2. Run `pre-commit run --all-files` before committing changes.
+3. Execute `pytest` to run unit and benchmark tests.
+4. Use `npm` inside the `ui` directory to build or launch the Tauri front-end.
+
+This file is provided so that any automation or AI assistant can reproduce the environment and follow the same standards as human contributors.
